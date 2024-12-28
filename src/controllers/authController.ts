@@ -15,7 +15,7 @@ export async function login(req: Request, res: Response): Promise<void> {
         const user = await findUserByEmail(email);
 
         if (!user) {
-            res.status(404).json({ message: 'Usuário não encontrado'})
+            res.status(404).json({ message: 'Email não encontrado'})
             return;
         }
 
@@ -30,6 +30,7 @@ export async function login(req: Request, res: Response): Promise<void> {
         res.status(200).json({
             message: 'Login realizado com sucesso',
             token,
+            userId: user.id
         });
     } catch (error) {
         console.error('Erro no login:', error);
